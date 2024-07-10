@@ -20,6 +20,7 @@ export function DestinationAndDateStep({
 					placeholder="Para onde você vai?"
 				/>
 			</div>
+
 			<div className="flex items-center gap-2">
 				<Calendar className="size-5 text-zinc-400" />
 				<input
@@ -29,7 +30,9 @@ export function DestinationAndDateStep({
 					placeholder="Quando?"
 				/>
 			</div>
+
 			<div className="w-px h-6 bg-zinc-800"></div>
+
 			{isGuestsInputOpen ? (
 				<button
 					onClick={handleGuestsInput}
