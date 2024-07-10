@@ -1,5 +1,5 @@
 import { Plus } from "lucide-react";
-import { useState } from "react";
+import { MouseEvent, useState } from "react";
 import { CreateActivityModal } from "./trip-details-components/create-activity-modal";
 import { ImportantLinks } from "./trip-details-components/inportant-links";
 import { GuestList } from "./trip-details-components/guest-list";
@@ -8,8 +8,11 @@ import { DestinationAndDateHeader } from "./trip-details-components/destination-
 import { Button } from "../../components/button";
 import { CreateLinkModal } from "./trip-details-components/create-link-modal";
 import { ConfirmParticipationModal } from "./trip-details-components/confirm-participation-modal";
+import { useNavigate } from "react-router-dom";
 
 export function TripDetailsPage() {
+	const navigate = useNavigate();
+
 	const [isCreateActivityModalOpen, setIsCreateActivityModalOpen] =
 		useState(false);
 	const [isCreateLinkModalOpen, setIsCreateLinkModalOpen] = useState(false);
@@ -34,9 +37,16 @@ export function TripDetailsPage() {
 			: setIsConfirmParticipationModalOpen(true);
 	};
 
+	function changeDestinationOrData(event: MouseEvent<HTMLButtonElement>) {
+		event.preventDefault();
+		navigate("/");
+	}
+
 	return (
 		<div className="max-w-6xl px-6 py-10 mx-auto space-y-8">
-			<DestinationAndDateHeader />
+			<DestinationAndDateHeader
+				changeDestinationOrData={changeDestinationOrData}
+			/>
 			<main className="flex gap-16 px-4">
 				<div className="flex-1 space-y-6">
 					<div className="flex items-center justify-between">
