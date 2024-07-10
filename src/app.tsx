@@ -8,7 +8,7 @@ const router = createBrowserRouter([
 		element: <CreateTripPage />,
 	},
 	{
-		path: "/trip/:tripId",
+		path: "/trips/:tripId",
 		element: <TripDetailsPage />,
 	},
 ]);

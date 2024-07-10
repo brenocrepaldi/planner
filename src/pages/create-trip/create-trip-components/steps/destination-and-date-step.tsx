@@ -9,17 +9,21 @@ import { DatePickerModal } from "./date-picker-modal";
 interface DestinationAndDateStepProps {
 	isGuestsInputOpen: boolean;
 	handleGuestsInput: () => void;
+	setDestination: (destination: string) => void;
+	dateRange: DateRange | undefined;
+	setDateRange: (dates: DateRange | undefined) => void;
 }
 
 export function DestinationAndDateStep({
 	isGuestsInputOpen,
 	handleGuestsInput,
+	setDestination,
+	dateRange,
+	setDateRange,
 }: DestinationAndDateStepProps) {
 	const initialRange: DateRange = {
 		from: new Date(),
 	};
-	const [dateRange, setDateRange] = useState<DateRange | undefined>(initialRange);
-
 	const [isDatePickerOpen, setIsDatePickerOpen] = useState(false);
 
 	const handleDatePicker = () => {
@@ -40,6 +44,7 @@ export function DestinationAndDateStep({
 					className="bg-transparent text-lg placeholder-zinc-400 outline-none flex-1"
 					type="text"
 					placeholder="Para onde você vai?"
+					onChange={(event) => setDestination(event.target.value)}
 				/>
 			</div>
 

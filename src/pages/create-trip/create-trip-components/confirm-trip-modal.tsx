@@ -5,33 +5,30 @@ import { Button } from "../../../components/button";
 interface ConfirmTripModalProps {
 	handleConfirmTripModal: () => void;
 	createTrip: (event: FormEvent<HTMLFormElement>) => void;
+	setOwnerName: (name: string) => void;
+	setOwnerEmail: (email: string) => void;
 }
 
 export function ConfirmTripModal({
 	handleConfirmTripModal,
 	createTrip,
+	setOwnerName,
+	setOwnerEmail,
 }: ConfirmTripModalProps) {
 	return (
 		<div className="fixed inset-0 bg-black/60 flex items-center justify-center">
 			<div className="w-[640px] rounded-xl py-5 px-6 shadow-shape bg-zinc-900 space-y-5">
 				<div className="space-y-2">
 					<div className="flex items-center justify-between">
-						<h2 className="text-lg font-semibold">
-							Confirmar criação da viagem
-						</h2>
+						<h2 className="text-lg font-semibold">Confirmar criação da viagem</h2>
 						<button onClick={handleConfirmTripModal}>
 							<X className="size-5 text-zinc-400" />
 						</button>
 					</div>
 					<p className="text-sm text-zinc-400">
 						Para concluir a criação da viagem para{" "}
-						<strong className="font-semibold text-zinc-100">
-							Florianópolis, Brasil
-						</strong>{" "}
-						nas datas de{" "}
-						<strong className="font-semibold text-zinc-100">
-							16 a 27 de Agosto de 2024
-						</strong>{" "}
+						<strong className="font-semibold text-zinc-100">Florianópolis, Brasil</strong> nas datas
+						de <strong className="font-semibold text-zinc-100">16 a 27 de Agosto de 2024</strong>{" "}
 						preencha seus dados abaixo:
 					</p>
 				</div>
@@ -44,8 +41,10 @@ export function ConfirmTripModal({
 								type="text"
 								placeholder="Seu nome completo"
 								className="bg-transparent text-lg placeholder-zinc-400 outline-none flex-1"
+								onChange={(event) => setOwnerName(event.target.value)}
 							/>
 						</div>
+
 						<div className="h-14 px-4 bg-zinc-950 border-zinc-800 rounded-lg flex items-center gap-2">
 							<Mail className="text-zinc-400 size-5" />
 							<input
@@ -53,6 +52,7 @@ export function ConfirmTripModal({
 								name="email"
 								placeholder="Seu e-mail pessoal"
 								className="bg-transparent text-lg placeholder-zinc-400 outline-none flex-1"
+								onChange={(event) => setOwnerEmail(event.target.value)}
 							/>
 						</div>
 					</div>
