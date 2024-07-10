@@ -1,9 +1,9 @@
 import { FormEvent, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { InviteGuestsModal } from "./invite-guests-modal";
-import { ConfirmTripModal } from "./confirm-trip-modal";
-import { DestinationAndDateStep } from "./steps/destination-and-date-step";
-import { InviteGuestsStep } from "./steps/inveite-guests-step";
+import { InviteGuestsModal } from "./create-trip-components/invite-guests-modal";
+import { ConfirmTripModal } from "./create-trip-components/confirm-trip-modal";
+import { DestinationAndDateStep } from "./create-trip-components/steps/destination-and-date-step";
+import { InviteGuestsStep } from "./create-trip-components/steps/inveite-guests-step";
 
 export function CreateTripPage() {
 	const navigate = useNavigate();
