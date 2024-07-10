@@ -1,5 +1,10 @@
 import { ArrowRight, Calendar, MapPin, Settings2 } from "lucide-react";
 import { Button } from "../../../../components/button";
+import { useState } from "react";
+import { DateRange } from "react-day-picker";
+import "react-day-picker/dist/style.css";
+import { format } from "date-fns";
+import { DatePickerModal } from "./date-picker-modal";
 
 interface DestinationAndDateStepProps {
 	isGuestsInputOpen: boolean;
@@ -10,6 +15,22 @@ export function DestinationAndDateStep({
 	isGuestsInputOpen,
 	handleGuestsInput,
 }: DestinationAndDateStepProps) {
+	const initialRange: DateRange = {
+		from: new Date(),
+	};
+	const [dateRange, setDateRange] = useState<DateRange | undefined>(initialRange);
+
+	const [isDatePickerOpen, setIsDatePickerOpen] = useState(false);
+
+	const handleDatePicker = () => {
+		isDatePickerOpen ? setIsDatePickerOpen(false) : setIsDatePickerOpen(true);
+	};
+
+	const displayedDate =
+		dateRange !== initialRange && dateRange && dateRange.from && dateRange.to
+			? `${format(dateRange.from, "d' de 'LLL")} até ${format(dateRange.to, "d' de 'LLL")}`
+			: null;
+
 	return (
 		<div className="h-16 bg-zinc-900 px-4 rounded-xl flex items-center shadow-shape gap-3">
 			<div className="flex items-center gap-2 flex-1">
@@ -22,15 +43,22 @@ export function DestinationAndDateStep({
 				/>
 			</div>
 
-			<div className="flex items-center gap-2">
+			<button
+				disabled={isGuestsInputOpen}
+				onClick={handleDatePicker}
+				className="flex items-center gap-2 text-left w-[240px]"
+			>
 				<Calendar className="size-5 text-zinc-400" />
-				<input
-					disabled={isGuestsInputOpen}
-					className="bg-transparent text-lg placeholder-zinc-400 w-40 outline-none"
-					type="text"
-					placeholder="Quando?"
+				<span className="text-lg text-zinc-400">{displayedDate || "Quando?"}</span>
+			</button>
+
+			{isDatePickerOpen && (
+				<DatePickerModal
+					handleDatePicker={handleDatePicker}
+					dateRange={dateRange}
+					setDateRange={setDateRange}
 				/>
-			</div>
+			)}
 
 			<div className="w-px h-6 bg-zinc-800"></div>
 
