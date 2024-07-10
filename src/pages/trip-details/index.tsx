@@ -6,15 +6,32 @@ import { GuestList } from "./trip-details-components/guest-list";
 import { ActivityList } from "./trip-details-components/activity-list";
 import { DestinationAndDateHeader } from "./trip-details-components/destination-and-date-header";
 import { Button } from "../../components/button";
+import { CreateLinkModal } from "./trip-details-components/create-link-modal";
+import { ConfirmParticipationModal } from "./trip-details-components/confirm-participation-modal";
 
 export function TripDetailsPage() {
 	const [isCreateActivityModalOpen, setIsCreateActivityModalOpen] =
+		useState(false);
+	const [isCreateLinkModalOpen, setIsCreateLinkModalOpen] = useState(false);
+	const [isConfirmParticipationModalOpen, setIsConfirmParticipationModalOpen] =
 		useState(false);
 
 	const handleCreateArtivityModal = () => {
 		isCreateActivityModalOpen
 			? setIsCreateActivityModalOpen(false)
 			: setIsCreateActivityModalOpen(true);
+	};
+
+	const handleCreateLinkModal = () => {
+		isCreateLinkModalOpen
+			? setIsCreateLinkModalOpen(false)
+			: setIsCreateLinkModalOpen(true);
+	};
+
+	const handleConfirmParticipationModal = () => {
+		isConfirmParticipationModalOpen
+			? setIsConfirmParticipationModalOpen(false)
+			: setIsConfirmParticipationModalOpen(true);
 	};
 
 	return (
@@ -33,15 +50,27 @@ export function TripDetailsPage() {
 				</div>
 
 				<div className="w-80 space-y-6">
-					<ImportantLinks />
+					<ImportantLinks handleCreateLinkModal={handleCreateLinkModal} />
 					<div className="w-full h-px bg-zinc-800" />
-					<GuestList />
+					<GuestList
+						handleConfirmParticipationModal={handleConfirmParticipationModal}
+					/>
 				</div>
 			</main>
 
 			{isCreateActivityModalOpen && (
 				<CreateActivityModal
 					handleCreateArtivityModal={handleCreateArtivityModal}
+				/>
+			)}
+
+			{isCreateLinkModalOpen && (
+				<CreateLinkModal handleCreateLinkModal={handleCreateLinkModal} />
+			)}
+
+			{isConfirmParticipationModalOpen && (
+				<ConfirmParticipationModal
+					handleConfirmParticipationModal={handleConfirmParticipationModal}
 				/>
 			)}
 		</div>
