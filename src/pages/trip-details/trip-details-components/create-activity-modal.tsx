@@ -1,13 +1,46 @@
 import { Calendar, Tag, X } from "lucide-react";
 import { Button } from "../../../components/button";
+import { FormEvent } from "react";
+import { api } from "../../../lib/axios";
+import { useParams } from "react-router-dom";
+import axios from "axios";
 
 interface CreateActivityModalProps {
 	handleCreateArtivityModal: () => void;
 }
 
-export function CreateActivityModal({
-	handleCreateArtivityModal,
-}: CreateActivityModalProps) {
+export function CreateActivityModal({ handleCreateArtivityModal }: CreateActivityModalProps) {
+	const { tripId } = useParams();
+
+	async function createActivity(event: FormEvent<HTMLFormElement>) {
+		event.preventDefault();
+
+		const data = new FormData(event.currentTarget);
+
+		const title = data.get("title")?.toString();
+		const occurs_at = data.get("occurs_at")?.toString();
+
+		try {
+			await api.post(`/trips/${tripId}/activities`, {
+				title,
+				occurs_at,
+			});
+		} catch (error) {
+			if (axios.isAxiosError(error)) {
+				if (error.response) {
+					console.error("Response data:", error.response.data);
+					console.error("Response status:", error.response.status);
+				} else if (error.request) {
+					console.error("Request data:", error.request);
+				} else {
+					console.error("Error message:", error.message);
+				}
+			}
+		} finally {
+			location.reload();
+		}
+	}
+
 	return (
 		<div className="fixed inset-0 bg-black/60 flex items-center justify-center">
 			<div className="w-[540px] rounded-xl py-5 px-6 shadow-shape bg-zinc-900 space-y-5">
@@ -18,17 +51,15 @@ export function CreateActivityModal({
 							<X className="size-5 text-zinc-400" />
 						</button>
 					</div>
-					<p className="text-sm text-zinc-400">
-						Todos convidados podem visualizar as atividades.
-					</p>
+					<p className="text-sm text-zinc-400">Todos convidados podem visualizar as atividades.</p>
 				</div>
 
-				<form className="space-y-3">
+				<form onSubmit={createActivity} className="space-y-3">
 					<div className="space-y-2">
 						<div className="h-14 px-4 bg-zinc-950 border-zinc-800 rounded-lg flex items-center gap-2">
 							<Tag className="text-zinc-400 size-5" />
 							<input
-								type="title"
+								name="title"
 								placeholder="Qual a atividade?"
 								className="bg-transparent placeholder-zinc-400 outline-none flex-1"
 							/>
