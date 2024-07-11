@@ -1,5 +1,9 @@
 import { Link2, Tag, X } from "lucide-react";
 import { Button } from "../../../components/button";
+import { FormEvent } from "react";
+import { api } from "../../../lib/axios";
+import { useParams } from "react-router-dom";
+import axios from "axios";
 
 interface CreateLinkModalProps {
 	handleCreateLinkModal: () => void;
@@ -8,6 +12,36 @@ interface CreateLinkModalProps {
 export function CreateLinkModal({
 	handleCreateLinkModal: handleCreateLinkModal,
 }: CreateLinkModalProps) {
+	const { tripId } = useParams();
+
+	async function createLink(event: FormEvent<HTMLFormElement>) {
+		event.preventDefault();
+
+		const data = new FormData(event.currentTarget);
+
+		const title = data.get("title")?.toString();
+		const url = data.get("url")?.toString();
+
+		try {
+			await api.post(`/trips/${tripId}/links`, {
+				title,
+				url,
+			});
+		} catch (error) {
+			if (axios.isAxiosError(error)) {
+				if (error.response) {
+					console.error("Response data:", error.response.data);
+					console.error("Response status:", error.response.status);
+				} else if (error.request) {
+					console.error("Request data:", error.request);
+				} else {
+					console.error("Error message:", error.message);
+				}
+			}
+		} finally {
+			location.reload();
+		}
+	}
 	return (
 		<div className="fixed inset-0 bg-black/60 flex items-center justify-center">
 			<div className="w-[540px] rounded-xl py-5 px-6 shadow-shape bg-zinc-900 space-y-5">
@@ -23,12 +57,12 @@ export function CreateLinkModal({
 					</p>
 				</div>
 
-				<form className="space-y-3">
+				<form onSubmit={createLink} className="space-y-3">
 					<div className="space-y-2">
 						<div className="h-14 px-4 bg-zinc-950 border-zinc-800 rounded-lg flex items-center gap-2">
 							<Tag className="text-zinc-400 size-5" />
 							<input
-								type="title"
+								name="title"
 								placeholder="Título do link"
 								className="bg-transparent placeholder-zinc-400 outline-none flex-1"
 							/>
@@ -37,7 +71,7 @@ export function CreateLinkModal({
 						<div className="h-14 px-4 bg-zinc-950 border-zinc-800 rounded-lg flex items-center gap-2">
 							<Link2 className="text-zinc-400 size-5" />
 							<input
-								type="title"
+								name="url"
 								placeholder="URL"
 								className="bg-transparent placeholder-zinc-400 outline-none flex-1"
 							/>
