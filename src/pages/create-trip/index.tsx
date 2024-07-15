@@ -126,7 +126,8 @@ export function CreateTripPage() {
 				</div>
 
 				<p className="text-sm text-zinc-500">
-					By planning your trip with plann.er you automatically agree to our{' '}
+					By planning your trip with <span className="text-zinc-300">planner</span> you
+					automatically agree to our{' '}
 					<a href="#" className="text-zinc-300 underline">
 						terms of use
 					</a>{' '}
