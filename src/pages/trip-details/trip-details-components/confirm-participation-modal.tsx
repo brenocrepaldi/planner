@@ -40,7 +40,7 @@ export function ConfirmParticipationModal({
 					<p className="text-sm text-zinc-400">
 						Manage the guests for the trip to{' '}
 						<strong className="font-semibold text-zinc-100">{trip?.destination}</strong> from{' '}
-						<strong className="font-semibold text-zinc-100">{displayedDate}</strong> .
+						<strong className="font-semibold text-zinc-100">{displayedDate}</strong>.
 					</p>
 				</div>
 
