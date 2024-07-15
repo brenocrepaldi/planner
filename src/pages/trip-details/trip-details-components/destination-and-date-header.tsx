@@ -1,36 +1,19 @@
-import { MapPin, Calendar, Settings2 } from 'lucide-react';
+import { Calendar, MapPin, Settings2 } from 'lucide-react';
+import { MouseEvent } from 'react';
 import { Button } from '../../../components/button';
-import { MouseEvent, useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import { api } from '../../../lib/axios';
-import { format } from 'date-fns';
+import { Trip } from '..';
 
 interface DestinationAndDateHeaderProps {
 	changeDestinationOrData: (event: MouseEvent<HTMLButtonElement>) => void;
-}
-
-interface Trip {
-	id: string;
-	destination: string;
-	starts_at: string;
-	ends_at: string;
-	is_confirmed: boolean;
+	trip: Trip | undefined;
+	displayedDate: string | null;
 }
 
 export function DestinationAndDateHeader({
 	changeDestinationOrData,
+	trip,
+	displayedDate,
 }: DestinationAndDateHeaderProps) {
-	const { tripId } = useParams();
-	const [trip, setTrip] = useState<Trip | undefined>();
-
-	useEffect(() => {
-		api.get(`/trips/${tripId}`).then((response) => setTrip(response.data.trip));
-	}, [tripId]);
-
-	const displayedDate = trip
-		? `${format(trip.starts_at, 'LLL d')} to ${format(trip.ends_at, 'LLL d')}`
-		: null;
-
 	return (
 		<div className="px-4 h-16 rounded-xl bg-zinc-900 shadow-shape flex items-center justify-between">
 			<div className="flex items-center gap-2">
