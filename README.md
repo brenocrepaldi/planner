@@ -1,5 +1,5 @@
 
-# Planner
+# planner
 
 ![Planner Logo](/public/logo.png)
 
