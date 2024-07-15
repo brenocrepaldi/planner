@@ -1,9 +1,9 @@
-import { Link2, Tag, X } from "lucide-react";
-import { Button } from "../../../components/button";
-import { FormEvent } from "react";
-import { api } from "../../../lib/axios";
-import { useParams } from "react-router-dom";
-import axios from "axios";
+import { Link2, Tag, X } from 'lucide-react';
+import { Button } from '../../../components/button';
+import { FormEvent } from 'react';
+import { api } from '../../../lib/axios';
+import { useParams } from 'react-router-dom';
+import axios from 'axios';
 
 interface CreateLinkModalProps {
 	handleCreateLinkModal: () => void;
@@ -19,8 +19,8 @@ export function CreateLinkModal({
 
 		const data = new FormData(event.currentTarget);
 
-		const title = data.get("title")?.toString();
-		const url = data.get("url")?.toString();
+		const title = data.get('title')?.toString();
+		const url = data.get('url')?.toString();
 
 		try {
 			await api.post(`/trips/${tripId}/links`, {
@@ -30,12 +30,12 @@ export function CreateLinkModal({
 		} catch (error) {
 			if (axios.isAxiosError(error)) {
 				if (error.response) {
-					console.error("Response data:", error.response.data);
-					console.error("Response status:", error.response.status);
+					console.error('Response data:', error.response.data);
+					console.error('Response status:', error.response.status);
 				} else if (error.request) {
-					console.error("Request data:", error.request);
+					console.error('Request data:', error.request);
 				} else {
-					console.error("Error message:", error.message);
+					console.error('Error message:', error.message);
 				}
 			}
 		} finally {
@@ -47,14 +47,12 @@ export function CreateLinkModal({
 			<div className="w-[540px] rounded-xl py-5 px-6 shadow-shape bg-zinc-900 space-y-5">
 				<div className="space-y-2">
 					<div className="flex items-center justify-between">
-						<h2 className="text-lg font-semibold">Cadastrar link</h2>
+						<h2 className="text-lg font-semibold">Create Link</h2>
 						<button onClick={handleCreateLinkModal}>
 							<X className="size-5 text-zinc-400" />
 						</button>
 					</div>
-					<p className="text-sm text-zinc-400">
-						Todos convidados podem visualizar os links importantes.
-					</p>
+					<p className="text-sm text-zinc-400">All guests can view important links.</p>
 				</div>
 
 				<form onSubmit={createLink} className="space-y-3">
@@ -63,7 +61,7 @@ export function CreateLinkModal({
 							<Tag className="text-zinc-400 size-5" />
 							<input
 								name="title"
-								placeholder="Título do link"
+								placeholder="Link title"
 								className="bg-transparent placeholder-zinc-400 outline-none flex-1"
 							/>
 						</div>
@@ -78,7 +76,7 @@ export function CreateLinkModal({
 						</div>
 					</div>
 					<Button variant="primary" size="full">
-						Salvar link
+						Save link
 					</Button>
 				</form>
 			</div>

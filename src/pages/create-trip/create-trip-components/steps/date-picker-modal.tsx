@@ -1,5 +1,5 @@
-import { X } from "lucide-react";
-import { DateRange, DayPicker, SelectRangeEventHandler } from "react-day-picker";
+import { X } from 'lucide-react';
+import { DateRange, DayPicker, SelectRangeEventHandler } from 'react-day-picker';
 
 interface DatePickerModalProps {
 	handleDatePicker: () => void;
@@ -17,7 +17,7 @@ export function DatePickerModal({
 			<div className="rounded-xl py-5 px-6 shadow-shape bg-zinc-900 space-y-5">
 				<div className="space-y-2">
 					<div className="flex items-center justify-between">
-						<h2 className="text-lg font-semibold">Selecione a data</h2>
+						<h2 className="text-lg font-semibold">Select the date</h2>
 						<button onClick={handleDatePicker}>
 							<X className="size-5 text-zinc-400" />
 						</button>

@@ -1,9 +1,9 @@
-import { Link2, Plus } from "lucide-react";
-import { Button } from "../../../components/button";
-import { useParams } from "react-router-dom";
-import { api } from "../../../lib/axios";
-import { useEffect, useState } from "react";
-import axios from "axios";
+import { Link2, Plus } from 'lucide-react';
+import { Button } from '../../../components/button';
+import { useParams } from 'react-router-dom';
+import { api } from '../../../lib/axios';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 
 interface ImportantLinksProps {
 	handleCreateLinkModal: () => void;
@@ -25,12 +25,12 @@ export function ImportantLinks({ handleCreateLinkModal }: ImportantLinksProps) {
 		} catch (error) {
 			if (axios.isAxiosError(error)) {
 				if (error.response) {
-					console.error("Response data:", error.response.data);
-					console.error("Response status:", error.response.status);
+					console.error('Response data:', error.response.data);
+					console.error('Response status:', error.response.status);
 				} else if (error.request) {
-					console.error("Request data:", error.request);
+					console.error('Request data:', error.request);
 				} else {
-					console.error("Error message:", error.message);
+					console.error('Error message:', error.message);
 				}
 			}
 		}
@@ -38,7 +38,7 @@ export function ImportantLinks({ handleCreateLinkModal }: ImportantLinksProps) {
 
 	return (
 		<div className="space-y-6">
-			<h2 className="font-semibold text-xl">Links importantes</h2>
+			<h2 className="font-semibold text-xl">Important links</h2>
 			<div className="space-y-5">
 				{linkList.map((link) => {
 					return (
@@ -61,7 +61,7 @@ export function ImportantLinks({ handleCreateLinkModal }: ImportantLinksProps) {
 
 			<Button onClick={handleCreateLinkModal} variant="secondary" size="full">
 				<Plus className="size-5" />
-				Cadastrar novo link
+				Add new link
 			</Button>
 		</div>
 	);

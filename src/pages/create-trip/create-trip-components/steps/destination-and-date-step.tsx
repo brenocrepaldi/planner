@@ -1,10 +1,10 @@
-import { ArrowRight, Calendar, MapPin, Settings2 } from "lucide-react";
-import { Button } from "../../../../components/button";
-import { useState } from "react";
-import { DateRange } from "react-day-picker";
-import "react-day-picker/dist/style.css";
-import { format } from "date-fns";
-import { DatePickerModal } from "./date-picker-modal";
+import { ArrowRight, Calendar, MapPin, Settings2 } from 'lucide-react';
+import { Button } from '../../../../components/button';
+import { useState } from 'react';
+import { DateRange } from 'react-day-picker';
+import 'react-day-picker/dist/style.css';
+import { format } from 'date-fns';
+import { DatePickerModal } from './date-picker-modal';
 
 interface DestinationAndDateStepProps {
 	isGuestsInputOpen: boolean;
@@ -32,7 +32,7 @@ export function DestinationAndDateStep({
 
 	const displayedDate =
 		dateRange !== initialRange && dateRange && dateRange.from && dateRange.to
-			? `${format(dateRange.from, "d' de 'LLL")} até ${format(dateRange.to, "d' de 'LLL")}`
+			? `${format(dateRange.from, 'LLL d')} to ${format(dateRange.to, 'LLL d')}`
 			: null;
 
 	return (
@@ -43,7 +43,7 @@ export function DestinationAndDateStep({
 					disabled={isGuestsInputOpen}
 					className="bg-transparent text-lg placeholder-zinc-400 outline-none flex-1"
 					type="text"
-					placeholder="Para onde você vai?"
+					placeholder="Where are you going?"
 					onChange={(event) => setDestination(event.target.value)}
 				/>
 			</div>
@@ -54,7 +54,7 @@ export function DestinationAndDateStep({
 				className="flex items-center gap-2 text-left w-[240px]"
 			>
 				<Calendar className="size-5 text-zinc-400" />
-				<span className="text-lg text-zinc-400">{displayedDate || "Quando?"}</span>
+				<span className="text-lg text-zinc-400">{displayedDate || 'When?'}</span>
 			</button>
 
 			{isDatePickerOpen && (
@@ -69,12 +69,12 @@ export function DestinationAndDateStep({
 
 			{isGuestsInputOpen ? (
 				<Button onClick={handleGuestsInput} variant="secondary">
-					Alterar local/data
+					Change location/date
 					<Settings2 className="size-5" />
 				</Button>
 			) : (
 				<Button onClick={handleGuestsInput} variant="primary">
-					Continuar
+					Next
 					<ArrowRight className="size-5" />
 				</Button>
 			)}

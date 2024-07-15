@@ -1,9 +1,9 @@
-import { Calendar, Tag, X } from "lucide-react";
-import { Button } from "../../../components/button";
-import { FormEvent } from "react";
-import { api } from "../../../lib/axios";
-import { useParams } from "react-router-dom";
-import axios from "axios";
+import { Calendar, Tag, X } from 'lucide-react';
+import { Button } from '../../../components/button';
+import { FormEvent } from 'react';
+import { api } from '../../../lib/axios';
+import { useParams } from 'react-router-dom';
+import axios from 'axios';
 
 interface CreateActivityModalProps {
 	handleCreateArtivityModal: () => void;
@@ -17,8 +17,8 @@ export function CreateActivityModal({ handleCreateArtivityModal }: CreateActivit
 
 		const data = new FormData(event.currentTarget);
 
-		const title = data.get("title")?.toString();
-		const occurs_at = data.get("occurs_at")?.toString();
+		const title = data.get('title')?.toString();
+		const occurs_at = data.get('occurs_at')?.toString();
 
 		try {
 			await api.post(`/trips/${tripId}/activities`, {
@@ -28,12 +28,12 @@ export function CreateActivityModal({ handleCreateArtivityModal }: CreateActivit
 		} catch (error) {
 			if (axios.isAxiosError(error)) {
 				if (error.response) {
-					console.error("Response data:", error.response.data);
-					console.error("Response status:", error.response.status);
+					console.error('Response data:', error.response.data);
+					console.error('Response status:', error.response.status);
 				} else if (error.request) {
-					console.error("Request data:", error.request);
+					console.error('Request data:', error.request);
 				} else {
-					console.error("Error message:", error.message);
+					console.error('Error message:', error.message);
 				}
 			}
 		} finally {
@@ -46,12 +46,12 @@ export function CreateActivityModal({ handleCreateArtivityModal }: CreateActivit
 			<div className="w-[540px] rounded-xl py-5 px-6 shadow-shape bg-zinc-900 space-y-5">
 				<div className="space-y-2">
 					<div className="flex items-center justify-between">
-						<h2 className="text-lg font-semibold">Cadastrar atividade</h2>
+						<h2 className="text-lg font-semibold">Create Activity</h2>
 						<button onClick={handleCreateArtivityModal}>
 							<X className="size-5 text-zinc-400" />
 						</button>
 					</div>
-					<p className="text-sm text-zinc-400">Todos convidados podem visualizar as atividades.</p>
+					<p className="text-sm text-zinc-400">All guests can view the activities.</p>
 				</div>
 
 				<form onSubmit={createActivity} className="space-y-3">
@@ -60,7 +60,7 @@ export function CreateActivityModal({ handleCreateArtivityModal }: CreateActivit
 							<Tag className="text-zinc-400 size-5" />
 							<input
 								name="title"
-								placeholder="Qual a atividade?"
+								placeholder="What's the activity?"
 								className="bg-transparent placeholder-zinc-400 outline-none flex-1"
 							/>
 						</div>
@@ -69,13 +69,13 @@ export function CreateActivityModal({ handleCreateArtivityModal }: CreateActivit
 							<input
 								type="datetime-local"
 								name="occurs_at"
-								placeholder="Data e horário da atividade"
+								placeholder="Activity date and time"
 								className="bg-transparent placeholder-zinc-100 outline-none flex-1"
 							/>
 						</div>
 					</div>
 					<Button variant="primary" size="full">
-						Salvar atividade
+						Save Activity
 					</Button>
 				</form>
 			</div>

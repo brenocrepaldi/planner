@@ -1,6 +1,6 @@
-import { AtSign, Plus, X } from "lucide-react";
-import { FormEvent } from "react";
-import { Button } from "../../../components/button";
+import { AtSign, Plus, X } from 'lucide-react';
+import { FormEvent } from 'react';
+import { Button } from '../../../components/button';
 
 interface InviteGuestsModalProps {
 	handleGuestsModal: () => void;
@@ -20,14 +20,13 @@ export function InviteGuestsModal({
 			<div className="w-[640px] rounded-xl py-5 px-6 shadow-shape bg-zinc-900 space-y-5">
 				<div className="space-y-2">
 					<div className="flex items-center justify-between">
-						<h2 className="text-lg font-semibold">Selecionar convidados</h2>
+						<h2 className="text-lg font-semibold">Select guests</h2>
 						<button onClick={handleGuestsModal}>
 							<X className="size-5 text-zinc-400" />
 						</button>
 					</div>
 					<p className="text-sm text-zinc-400">
-						Os convidados irão receber e-mails para confirmar a participação na
-						viagem.
+						Guests will receive an email to confirm their participation in the trip.
 					</p>
 				</div>
 
@@ -61,12 +60,12 @@ export function InviteGuestsModal({
 						<input
 							type="email"
 							name="email"
-							placeholder="Digite o e-mail do convidado"
+							placeholder="Enter guest's email"
 							className="bg-transparent text-lg placeholder-zinc-400 outline-none flex-1"
 						/>
 					</div>
 					<Button type="submit" variant="primary">
-						Convidar
+						Invite
 						<Plus className="size-5" />
 					</Button>
 				</form>

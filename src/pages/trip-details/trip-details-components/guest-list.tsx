@@ -1,9 +1,9 @@
-import { CircleCheck, CircleDashed, UserCog } from "lucide-react";
-import { Button } from "../../../components/button";
-import { useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
-import { api } from "../../../lib/axios";
-import axios from "axios";
+import { CircleCheck, CircleDashed, UserCog } from 'lucide-react';
+import { Button } from '../../../components/button';
+import { useParams } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { api } from '../../../lib/axios';
+import axios from 'axios';
 
 interface GuestListProps {
 	handleConfirmParticipationModal: () => void;
@@ -28,12 +28,12 @@ export function GuestList({ handleConfirmParticipationModal }: GuestListProps) {
 		} catch (error) {
 			if (axios.isAxiosError(error)) {
 				if (error.response) {
-					console.error("Response data:", error.response.data);
-					console.error("Response status:", error.response.status);
+					console.error('Response data:', error.response.data);
+					console.error('Response status:', error.response.status);
 				} else if (error.request) {
-					console.error("Request data:", error.request);
+					console.error('Request data:', error.request);
 				} else {
-					console.error("Error message:", error.message);
+					console.error('Error message:', error.message);
 				}
 			}
 		}
@@ -41,7 +41,7 @@ export function GuestList({ handleConfirmParticipationModal }: GuestListProps) {
 
 	return (
 		<div className="space-y-6">
-			<h2 className="font-semibold text-xl">Convidados</h2>
+			<h2 className="font-semibold text-xl">Guests</h2>
 			<div className="space-y-5">
 				{participantList?.map((participant) => {
 					return (
@@ -62,7 +62,7 @@ export function GuestList({ handleConfirmParticipationModal }: GuestListProps) {
 
 			<Button onClick={handleConfirmParticipationModal} variant="secondary" size="full">
 				<UserCog className="size-5" />
-				Gerenciar convidados
+				Manage guests
 			</Button>
 		</div>
 	);

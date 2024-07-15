@@ -1,5 +1,5 @@
-import { Mail, User, X } from "lucide-react";
-import { Button } from "../../../components/button";
+import { Mail, User, X } from 'lucide-react';
+import { Button } from '../../../components/button';
 
 interface ConfirmParticipationModalProps {
 	handleConfirmParticipationModal: () => void;
@@ -13,21 +13,15 @@ export function ConfirmParticipationModal({
 			<div className="w-[540px] rounded-xl py-5 px-6 shadow-shape bg-zinc-900 space-y-5">
 				<div className="space-y-2">
 					<div className="flex items-center justify-between">
-						<h2 className="text-lg font-semibold">Confirmar participação</h2>
+						<h2 className="text-lg font-semibold">Confirm Participation</h2>
 						<button onClick={handleConfirmParticipationModal}>
 							<X className="size-5 text-zinc-400" />
 						</button>
 					</div>
 					<p className="text-sm text-zinc-400">
-						Você foi convidado(a) para participar de uma viagem para{" "}
-						<strong className="font-semibold text-zinc-100">
-							Florianópolis, Brasil
-						</strong>{" "}
-						nas datas de{" "}
-						<strong className="font-semibold text-zinc-100">
-							16 a 27 de Agosto de 2024
-						</strong>{" "}
-						.
+						You have been invited to participate in a trip to{' '}
+						<strong className="font-semibold text-zinc-100">Florianópolis, Brazil</strong> from{' '}
+						<strong className="font-semibold text-zinc-100">August 16 to 27, 2024</strong> .
 					</p>
 				</div>
 
@@ -37,7 +31,7 @@ export function ConfirmParticipationModal({
 							<User className="text-zinc-400 size-5" />
 							<input
 								type="text"
-								placeholder="Seu nome completo"
+								placeholder="Your full name"
 								className="bg-transparent placeholder-zinc-400 outline-none flex-1"
 							/>
 						</div>
@@ -46,13 +40,13 @@ export function ConfirmParticipationModal({
 							<input
 								type="email"
 								name="email"
-								placeholder="Seu e-mail"
+								placeholder="Your email"
 								className="bg-transparent placeholder-zinc-400 outline-none flex-1"
 							/>
 						</div>
 					</div>
 					<Button variant="primary" size="full">
-						Confirmar minha presença
+						Confirm my participation
 					</Button>
 				</form>
 			</div>

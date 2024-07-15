@@ -1,12 +1,12 @@
-import { FormEvent, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { InviteGuestsModal } from "./create-trip-components/invite-guests-modal";
-import { ConfirmTripModal } from "./create-trip-components/confirm-trip-modal";
-import { DestinationAndDateStep } from "./create-trip-components/steps/destination-and-date-step";
-import { InviteGuestsStep } from "./create-trip-components/steps/inveite-guests-step";
-import { DateRange } from "react-day-picker";
-import { api } from "../../lib/axios";
-import axios from "axios";
+import { FormEvent, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { InviteGuestsModal } from './create-trip-components/invite-guests-modal';
+import { ConfirmTripModal } from './create-trip-components/confirm-trip-modal';
+import { DestinationAndDateStep } from './create-trip-components/steps/destination-and-date-step';
+import { InviteGuestsStep } from './create-trip-components/steps/inveite-guests-step';
+import { DateRange } from 'react-day-picker';
+import { api } from '../../lib/axios';
+import axios from 'axios';
 
 export function CreateTripPage() {
 	const navigate = useNavigate();
@@ -16,10 +16,10 @@ export function CreateTripPage() {
 	const [emailsToInvite, setEmailsToInvite] = useState<string[]>([]);
 	const [isConfirmTripModalOpen, setIsConfirmTripModalOpen] = useState(false);
 
-	const [destination, setDestination] = useState("");
+	const [destination, setDestination] = useState('');
 	const [dateRange, setDateRange] = useState<DateRange | undefined>();
-	const [ownerName, setOwnerName] = useState("");
-	const [ownerEmail, setOwnerEmail] = useState("");
+	const [ownerName, setOwnerName] = useState('');
+	const [ownerEmail, setOwnerEmail] = useState('');
 
 	const handleGuestsInput = () => {
 		isGuestsInputOpen ? setIsGuestInputOpen(false) : setIsGuestInputOpen(true);
@@ -37,7 +37,7 @@ export function CreateTripPage() {
 		event.preventDefault();
 
 		const data = new FormData(event.currentTarget);
-		const email = data.get("email")?.toString();
+		const email = data.get('email')?.toString();
 
 		if (!email) {
 			return;
@@ -73,7 +73,7 @@ export function CreateTripPage() {
 			return;
 
 		try {
-			const response = await api.post("/trips", {
+			const response = await api.post('/trips', {
 				destination,
 				starts_at: dateRange.from,
 				ends_at: dateRange.to,
@@ -88,12 +88,12 @@ export function CreateTripPage() {
 		} catch (error) {
 			if (axios.isAxiosError(error)) {
 				if (error.response) {
-					console.error("Response data:", error.response.data);
-					console.error("Response status:", error.response.status);
+					console.error('Response data:', error.response.data);
+					console.error('Response status:', error.response.status);
 				} else if (error.request) {
-					console.error("Request data:", error.request);
+					console.error('Request data:', error.request);
 				} else {
-					console.error("Error message:", error.message);
+					console.error('Error message:', error.message);
 				}
 			}
 		}
@@ -104,7 +104,7 @@ export function CreateTripPage() {
 			<div className="max-w-3xl w-full px-6 text-center space-y-10 -mt-20">
 				<div className="flex flex-col items-center">
 					<img className="size-52 -mb-16" src="/logo.svg" alt="Logo planner" />
-					<p className="text-zinc-300 text-lg">Convide seus amigos e planeje sua próxima viagem!</p>
+					<p className="text-zinc-300 text-lg">Invite your friends and plan your next trip!</p>
 				</div>
 
 				<div className="space-y-4">
@@ -126,14 +126,13 @@ export function CreateTripPage() {
 				</div>
 
 				<p className="text-sm text-zinc-500">
-					Ao planejar sua viagem pela plann.er você automaticamente concorda <br /> com nossos{" "}
+					By planning your trip with plann.er you automatically agree to our{' '}
 					<a href="#" className="text-zinc-300 underline">
-						termos de uso
-					</a>{" "}
-					e
+						terms of use
+					</a>{' '}
+					and{' '}
 					<a href="#" className="text-zinc-300 underline">
-						{" "}
-						políticas de privacidade
+						privacy policies
 					</a>
 					.
 				</p>
